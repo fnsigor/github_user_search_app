@@ -1,36 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import ThemeButton from './ThemeButton'
+import { TemaContext } from '../context/TemaContext'
 
 const Content = styled.header`
-display: flex;
-justify-content: space-between;
-margin-bottom: 3rem;
-
-button, h4{
-  font-family: monospace;
-}
-
-h4{
-  text-transform: lowercase;
-  font-size: 3rem;
-}
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
 
 
-button{
-  background: none;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  border: none;
-}
+  h4{
+    font-family: monospace;
+    text-transform: lowercase;
+    font-size: 3rem;
+    font-family: monospace, sans-serif;
+  }
+
+
+
 `
 
 function Header() {
+
+  const { tema } = useContext(TemaContext)
+
   return (
-    < Content>
-      <h4>devfinder</h4>
-      <button>
-        light
-      </button>
+    < Content >
+      <h4 className={`${tema === 'light' ? "darkBlueTxt" : "darkWhiteTxt"}`}>devfinder</h4>
+      <ThemeButton />
     </ Content>
   )
 }

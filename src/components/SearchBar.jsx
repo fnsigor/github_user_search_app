@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import search from '../assets/search.svg'
 import { UserContext } from '../context/UserContext'
+import { TemaContext } from '../context/TemaContext'
 
 
 
@@ -9,13 +10,14 @@ import { UserContext } from '../context/UserContext'
 
 const Nav = styled.nav`
 
-    background-color:  ${props => props.theme.mediumBlue};
     border-radius: 8px;
     padding: 1rem;
-    width: 100%;
+
     margin-bottom: 2rem;
 
     display: flex;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0 2px 6px;
 
     button, input{
         font-family:monospace;
@@ -56,6 +58,7 @@ const Nav = styled.nav`
             font-size: 1.4rem;
             text-transform: capitalize;
             background-color:  ${props => props.theme.lightBlue};
+      
             border:none;
             border-radius: 8px;
             padding-inline: 1.5rem;
@@ -82,6 +85,7 @@ export function SearchBar() {
 
     const { setUser } = useContext(UserContext)
 
+
     async function getUser() {
 
         try {
@@ -102,9 +106,11 @@ export function SearchBar() {
         getUser()
     }, [])
 
+    const { tema } = useContext(TemaContext)
+
 
     return (
-        <Nav>
+        <Nav className={`${tema === 'light' ? "mediumWhiteBg" : "mediumBlueBg"}`}>
             <form onSubmit={(e) => {
                 e.preventDefault()
                 getUser()
@@ -117,6 +123,7 @@ export function SearchBar() {
                     <input type="text" name="username" id="username" placeholder="Search Github Username..."
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
+                        className={`${tema === 'light' ? "mediumBlueTxt" : "gray"}`}
                     />
 
                 </div>
