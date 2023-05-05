@@ -6,7 +6,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import Header from './components/Header'
 import { UserContext } from './context/UserContext'
 import { useState } from 'react'
-import { UserExpandedCard } from './components/ExpandedCard'
+import { UserCard } from './components/UserCard'
 import { TemaContext } from './context/TemaContext'
 
 
@@ -44,7 +44,7 @@ function App() {
           <UserContext.Provider value={{ user, setUser }}>
             <Header />
             <SearchBar />
-            <UserExpandedCard />
+            <UserCard />
           </UserContext.Provider>
         </Content>
       </TemaContext.Provider>
